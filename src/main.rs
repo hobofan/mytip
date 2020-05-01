@@ -7,6 +7,13 @@ pub fn sci_hub_tooltip(doi: &str) -> TipUrlLine {
     }
 }
 
+pub fn official_doi_tooltip(doi: &str) -> TipUrlLine {
+    TipUrlLine {
+        label: "Official DOI".to_owned(),
+        value: format!("https://doi.org/{}", doi),
+    }
+}
+
 fn main() {
     let input = std::env::args().nth(1).expect("Missing input");
 
@@ -16,6 +23,7 @@ fn main() {
         }
         .into(),
         sci_hub_tooltip(&input).into(),
+        official_doi_tooltip(&input).into(),
     ];
     print_tooltips(&output);
 }
